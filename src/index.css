@@ -1,7 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  
+
+html,
+body,
+#root {
+    font-family: 'Rubik', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.overlay-div{
+    @apply bg-white w-full max-md:max-w-[490px] mx-auto h-fit rounded-xl p-6 lg:p-8 flex flex-col 
+        md:flex-row lg:w-fit gap-y-4 items-center justify-center text-center shadow-lg lg:*:text-left 
+        pointer-events-auto max-lg:*:w-1/4 lg:*:border-r-2 lg:*:px-10 max-md:*:w-full
 }
