@@ -43,24 +43,11 @@ function App() {
     }
   }, [latLng]);
 
-  // popup content
-
-  // Update marker's popup when latLng changes
-  // useEffect(() => {
-  //   if (markerRef.current) {
-  //     markerRef.current.bindPopup(popupContent).openPopup();
-  //   }
-  // })
-
-
-
   // Fetch location when IP changes
   useEffect(() => {
     async function fetchLocation() {
       const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_FPO3fDnjSZVDQTKx6wjHfAEGysQuj&ipAddress=${ipAddress}`);
       const data = await response.json();
-      console.log(data);
-      // setIpAddress(data.ip || ipAddress); // Update IP address if available
       // // Update latLng state with fetched location
       if (data.location && data.location.lat && data.location.lng) {
         setLatLng({ lat: data.location.lat, lng: data.location.lng });
