@@ -73,6 +73,18 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [inputValue]);
+
+  const ipv4Regex = /^(25[0-5]|2[0-4][0-9]|1?[0-9]{1,2})(\.(25[0-5]|2[0-4][0-9]|1?[0-9]{1,2})){3}$/;
+  const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-_]+\.)+[a-zA-Z]{2,}$/;
+
+  const handleSearch = () => {
+    if (ipv4Regex.test(inputValue) || domainRegex.test(inputValue)) {
+      setIpAddress(inputValue);
+    } else {
+      alert('Please enter a valid IP address or domain name!');
+    }
+  };
+
   return (
     <>
       <div className="relative h-[700px] md:h-screen w-full">
@@ -84,7 +96,7 @@ function App() {
         {/* Map fills the rest of the screen, but is capped on large screens */}
         <div
           className="absolute left-0 right-0 bottom-0 bg-black"
-        style={{ top: 280 }}
+          style={{ top: 280 }}
         >
           <div
             id="map"
@@ -102,15 +114,14 @@ function App() {
             <input
               type='text'
               value={inputValue}
+              pattern="^(25[0-5]|2[0-4][0-9]|1?[0-9]{1,2})(\\.(25[0-5]|2[0-4][0-9]|1?[0-9]{1,2})){3}$"
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder='Enter IP Address'
+              placeholder='Search for any IP address or domain'
               className='border border-gray-300 p-4 rounded-l-xl w-full
             text-very-dark-gray outline-none lg:pl-6 text-lg'
             />
             <button
-              onClick={() => {
-                setIpAddress(inputValue);
-              }}
+              onClick={handleSearch}
               className='bg-black px-6 rounded-r-xl flex items-center'
               style={{ height: 'auto' }}
             >
